@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <title>todo app</title>
+</head>
+<body>
+    <div style="margin-top: 20px;" class="ui container">
+        <h1 class="ui center aligned huge header">ToDo App</h1>
+
+        {% for user in user_info %}
+        <div>
+            <p class="ui header">User name: {{user.login}}</p>
+            <form class="ui form" action="/logout">
+                <div class="field">
+                    <button style="margin-top:-30px;" class="ui red button">LogOut</button>
+                </div>
+            </form>
+        </div>
+        {% endfor %}
+
+        <form class="ui form" action="/add">
+            <div class="field">
+                <button style="margin-top:20px;" class="ui blue button">Add New Task</button>
+            </div>
+        </form>
+
+        {% for todo in todo_list %}
+        <div class="ui segment" data-id="{{todo.id}}">
+            <p class="ui header">{{ todo.title }}</p>
+
+            <a class="ui grey button" href="/view/{{ todo.id }}">View</a>
+            <button class="ui red button" onclick="delete_task()">Delete</button>
+            <input type="checkbox" onchange="change()"
+             {% if todo.status %} checked {% endif %}>
+            
+        </div>
+        {% endfor %}
+    </div>  
+</body>
+</html>

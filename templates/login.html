@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <title>todo app</title>
+</head>
+<body style="padding-top: 200px;">
+    <div class="page-login">
+        <h1 class="ui center aligned huge header">ToDo App</h1>
+        <div class="ui centered grid container">
+          <div class="nine wide column">
+            <div class="ui fluid card">
+              <div class="content">
+              <form class="ui form" >
+                <div class="field">
+                    <label>Login</label>
+                    <input type="text" name="login" placeholder="Login" value="{%if login %}{{login}}{%endif%}">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <button formaction="/login" formmethod="POST" id="but_login" class="ui primary labeled icon button" type="submit">
+                    <i class="unlock alternate icon"></i>
+                  Login
+                </button>
+                <button formaction="/register" formmethod="POST" id="but_create_acc" class="ui primary labeled icon button" type="submit">
+                    <i class="pencil alternate icon"></i>
+                    Create an account
+                </button>
+                {% if error %}
+                    <p style="margin-top: 10px;" class="ui header">
+                        {{error}}
+                    </p>
+                {% endif %} 
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
