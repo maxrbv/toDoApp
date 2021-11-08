@@ -133,7 +133,7 @@ def view(todo_id):
 
 
 @app.route('/update-status', methods=["POST"])
-def update_status(todo_id):
+def update_status():
     if "login" in session and session["login"]:
         json = request.json
         item = Todo.query.filter_by(id=json['id']).update(dict(status=json['status']))
